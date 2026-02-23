@@ -1,0 +1,64 @@
+# Developer Onboarding — Hot Choco
+
+Welcome! This guide will get you up to speed on the Hot Choco project.
+
+## What You Need From Mai
+
+Before you start, ask Mai for:
+
+1. **n8n login credentials** — access to `https://hotchoco.nerdsociety.com.vn:8443`
+2. **Telegram Bot token** — for the Hot Choco bot
+3. **Google Service Account JSON key** — for Sheets + Drive access
+4. **Google Sheet access** — view/edit the master spreadsheet
+5. **Telegram group/chat access** — to test the bot
+
+## First Steps (Day 1)
+
+### 1. Understand the System
+- Read `README.md` thoroughly
+- Read `docs/architecture/system-overview.md`
+- Read `docs/business-rules/commissions-and-pricing.md`
+
+### 2. Explore n8n
+- Log into `https://hotchoco.nerdsociety.com.vn:8443`
+- Open each workflow and trace the logic visually
+- Run test executions with manual trigger
+
+### 3. Explore the Data
+- Open the Google Sheet: `https://docs.google.com/spreadsheets/d/17WfwIy5WfN2uS51q-DrPtMlE-WHfqwWXvIghMbq697o/edit`
+- Familiarize yourself with each tab: Orders, Order_Items, Consignment
+- Check the Google Drive photo folder
+
+### 4. Test the Bot
+- Send `/help` to the Telegram bot
+- Send `/sales` and `/status` to see live data
+- Try `/receive CH 2` to test consignment flow (use test brand)
+
+## n8n Tips
+
+### Useful n8n concepts for this project:
+- **Code nodes**: Most business logic is in JavaScript code nodes
+- **Static data**: `$getWorkflowStaticData('global')` — persistent-ish storage within a workflow (lost on restart!)
+- **Credentials**: Referenced by ID in nodes — don't hardcode tokens
+- **Webhook conflicts**: Two workflows can't share the same Telegram bot webhook
+
+### How to test:
+1. Open a workflow
+2. Click "Execute Workflow" (manual run)
+3. Use "Test webhooks" mode to test Telegram triggers
+4. Check execution logs for errors
+
+## Key Decisions to Make
+
+As you build, discuss these with Mai:
+
+1. **Single workflow vs. modular?** — Current: 2 separate workflows fighting over Telegram webhook. Recommend merging.
+2. **Keep Google Sheets or move to database?** — Sheets works for now but will hit performance limits at ~10k rows.
+3. **Vietnamese or English responses?** — Currently English. Staff may prefer Vietnamese.
+4. **Commission structures** — Need exact rates per brand from Mai.
+
+## Contact
+
+- **Mai** (Project Owner): Telegram ID `8449351519`
+- **n8n Docs**: https://docs.n8n.io
+- **Telegram Bot API**: https://core.telegram.org/bots/api
