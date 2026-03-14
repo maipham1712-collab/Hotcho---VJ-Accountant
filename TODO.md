@@ -11,9 +11,10 @@
 - [ ] **Add inline keyboard buttons** to Ask Category in consignment flow
   - Currently sends text only — user can't tap category buttons
   - Need `reply_markup` with `inline_keyboard` in the Telegram node
-- [ ] **Add user authorization** — check Telegram user ID against allowed list
+- [x] **Add user authorization** — check Telegram user ID against allowed list
   - Block unauthorized users from all commands
   - Restrict `/ks`, `/bctc`, `/settle` to Mai only (ID: `8449351519`)
+  - Implemented in `n8n-code-nodes/authorize-user.js`
 
 ## 🟡 Priority 2 — Build Core Features
 
